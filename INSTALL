@@ -1,0 +1,15 @@
+Install instructions
+====================
+
+First make sure you have the django-gravatar/gravatar directory on your
+PYTHONPATH.
+
+Then add the application to your INSTALLED_APPS:
+
+    INSTALLED_APPS = (
+        ...
+        'gravatar',
+        ...
+    )
+
+Load the template library with `{% load gravatar_tags %}`.

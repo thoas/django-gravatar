@@ -1,0 +1,17 @@
+Django Gravatar
+===============
+
+A templatetag for Django to get [Gravatar](http://gravatar.com/) URL's from
+email addresses.
+
+With experimental local caching support on the cache-branch.
+
+Usage
+-----
+
+    {% get_gravatar_for_email <email-address> [size] [rating] %}
+
+Example
+-------
+
+    {% get_gravatar_for_email joe@example.com 48 r %}
