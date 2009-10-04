@@ -1,6 +1,6 @@
 from django import template
 from django.conf import settings
-from hashlib import md5
+from django.utils.hashcompat import md5_constructor
 from urllib import urlencode
 
 GRAVATAR_URL_PREFIX = getattr(settings, 'GRAVATAR_URL_PREFIX', 'http://www.gravatar.com/avatar/')
@@ -30,7 +30,7 @@ def get_gravatar_for_email(email, size = None, rating = None):
 
         {% get_gravatar_for_email foobar@example.com 48 r %}
     """
-    gravatar_id = md5(email.lower()).hexdigest()
+    gravatar_id = md5_constructor(email.lower()).hexdigest()
     gravatar_url = GRAVATAR_URL_PREFIX + gravatar_id + GRAVATAR_IMAGE_EXT
 
     # Build a list of tuples with Gravatar parameters that we want to use.
