@@ -5,9 +5,15 @@ from urllib import urlencode
 
 GRAVATAR_URL_PREFIX = getattr(settings, 'GRAVATAR_URL_PREFIX', 'http://www.gravatar.com/avatar/')
 GRAVATAR_IMAGE_EXT = getattr(settings, 'GRAVATAR_IMAGE_EXT', '')
-GRAVATAR_DEFAULT_IMAGE = getattr(settings, 'GRAVATAR_DEFAULT_IMAGE', '')
 GRAVATAR_RATING = getattr(settings, 'GRAVATAR_RATING', '')
 GRAVATAR_SIZE = getattr(settings, 'GRAVATAR_SIZE', '')
+
+if hasattr(settings, "GRAVATAR_DEFAULT_IMAGE"):
+    from django.contrib.sites.models import Site
+    GRAVATAR_DEFAULT_IMAGE = 'http://%s%s' % (Site.objects.get_current().domain,
+                                              getattr(settings, "GRAVATAR_DEFAULT_IMAGE"))
+else:
+    GRAVATAR_DEFAULT_IMAGE = ''
 
 register = template.Library()
 
