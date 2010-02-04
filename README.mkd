@@ -15,3 +15,9 @@ Example
 -------
 
     {% get_gravatar_for_email joe@example.com 48 r %}
+
+Differences from http://github.com/thoas/django-gravatar:
+
+    Added method returns URL string for gravatar image.
+    Not only for template tag, also can be used as simple function for importing
+    This function also supported not global default images
