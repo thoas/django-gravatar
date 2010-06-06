@@ -2,12 +2,6 @@ from django.conf import settings
 from django.utils.hashcompat import md5_constructor
 from urllib import urlencode
 
-GRAVATAR_URL_PREFIX = getattr(settings, 'GRAVATAR_URL_PREFIX', 'http://www.gravatar.com/avatar/')
-GRAVATAR_IMAGE_EXT = getattr(settings, 'GRAVATAR_IMAGE_EXT', '')
-GRAVATAR_RATING = getattr(settings, 'GRAVATAR_RATING', '')
-GRAVATAR_SIZE = getattr(settings, 'GRAVATAR_SIZE', '')
-GRAVATAR_DEFAULT_IMAGE = _get_default_image_url(getattr(settings, "GRAVATAR_DEFAULT_IMAGE")) if hasattr(settings, "GRAVATAR_DEFAULT_IMAGE") else ''
-
 def _get_default_image_url(relative_path):
     """ This function has to be on top for old python interpreter. """
     from django.contrib.sites.models import Site
@@ -38,3 +32,9 @@ def get_gravatar(email, size = None, rating = None, default = None):
         gravatar_url += '?' + urlencode(parameters, doseq = True)
 
     return gravatar_url
+
+GRAVATAR_URL_PREFIX = getattr(settings, 'GRAVATAR_URL_PREFIX', 'http://www.gravatar.com/avatar/')
+GRAVATAR_IMAGE_EXT = getattr(settings, 'GRAVATAR_IMAGE_EXT', '')
+GRAVATAR_RATING = getattr(settings, 'GRAVATAR_RATING', '')
+GRAVATAR_SIZE = getattr(settings, 'GRAVATAR_SIZE', '')
+GRAVATAR_DEFAULT_IMAGE = _get_default_image_url(getattr(settings, "GRAVATAR_DEFAULT_IMAGE")) if hasattr(settings, "GRAVATAR_DEFAULT_IMAGE") else ''
